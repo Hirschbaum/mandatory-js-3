@@ -2,3 +2,38 @@ body {
     font-family: 'Quicksand', sans-serif;
     margin: 0 auto;
 }
+
+.container {
+    display: flex;
+}
+
+.main {
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+img {
+    width: 200px;
+    height: 200px;
+    margin-top: 100px;
+    margin-left: 1%;
+}
+
+h2 {
+    margin-left: 7%;
+}
+ul {
+    list-style-type: none;
+}
+
+li:hover {
+    background-color: gainsboro;
+}
+
+aside {
+    width: 30vw;
+}
+
+main {
+    width: 70vw;
+}
