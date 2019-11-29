@@ -5,35 +5,65 @@ body {
 
 .container {
     display: flex;
+    position: relative;
+}
+
+.container::after {
+    content: h2;
+    background-color: #eee;
+    width: 100vw;
+    height: 100px;
+    position: absolute;
 }
 
 .main {
     flex-direction: row;
     flex-wrap: nowrap;
+    justify-content: space-around;
 }
 
 img {
     width: 200px;
     height: 200px;
-    margin-top: 100px;
+    margin-top: 10px;
     margin-left: 1%;
+    border-radius: 0.4rem;
 }
 
-h2 {
+h2, p {
     margin-left: 7%;
 }
+
+p:first-of-type {
+    margin-bottom: -2%;
+}
+
 ul {
     list-style-type: none;
 }
 
 li:hover {
     background-color: gainsboro;
+    border-radius: 0.3rem;
 }
 
 aside {
-    width: 30vw;
+    width: 40vw;
 }
 
 main {
-    width: 70vw;
+    width: 60vw;
+}
+
+button {
+    background-color: rgb(75, 73, 73);
+    border: 1px solid rgb(75, 73, 73);
+    border-radius: 0.4rem;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    padding: 5% 4%;
+    margin-top: 3%;
+    margin-left: 15%;
 }
