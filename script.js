@@ -73,9 +73,13 @@ function randomBreedFoto(breed) {
             let dogFotos = response.data.message;
             console.log(dogFotos);
 
+            let headlineBreed = document.createElement('h3');
+            headlineBreed.textContent = breed;
             let dogIndex = document.createElement('div');
             dogIndex.className = 'index-container';
+            dogMain.style.backgroundColor ="#eee";
             dogMain.appendChild(dogIndex);
+            dogIndex.appendChild(headlineBreed);
             for (let i = 0; i < dogFotos.length; i++) {
                 let foto = document.createElement('img');
                 foto.setAttribute('src', dogFotos[i]);
@@ -84,7 +88,7 @@ function randomBreedFoto(breed) {
 
             //refresh random fotos on the index page
             let refreshButton = document.createElement('button');
-            refreshButton.textContent = 'Still bored';
+            refreshButton.textContent = 'Oh really?';
 
             refreshButton.addEventListener('click', function () {
                 dogIndex.innerHTML = "";
@@ -95,27 +99,5 @@ function randomBreedFoto(breed) {
         })
         
 };
-
-/*
-function randomBreed(breed) {
-    let breeds = document.querySelectorAll('li'); //li
-    let randomFotosDiv = document.querySelector('.dogIndex');
-
-    for (let i = 0; i < breeds.length; i++) {
-        let dog = breeds[i].textContent; 
-        console.log(dog);
-        dog.addEventListener('click', function () {
-            dogMain.innerHTML = '';
-            //randomFotosDiv.innerHTML = '';
-            randomBreedFoto(dog); 
-        })
-        
-    }
-    };
-*/
-    //a fasza linkbe be teszi azt a szót, amire kattintunk, ez lesz a breed
-    //erre jön egz adeventlistener, click és funkcio
-    //ami random 3 fot´t ad? vagy simán megy a get breed name-be
-
 
 breedSidebar();
