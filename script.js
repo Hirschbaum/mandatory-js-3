@@ -139,7 +139,7 @@ function randomSubbreedPhotos(breed, subbreed){
             console.log(dogFotos);
 
             let subHeadLine = document.createElement('h3');
-            subHeadLine.textContent = subbreed;
+            subHeadLine.textContent = `${subbreed} ${breed}`;
             dogMain.appendChild(subHeadLine);
 
             for (let i = 0; i < dogFotos.length; i++) {
