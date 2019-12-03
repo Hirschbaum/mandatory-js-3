@@ -19,21 +19,19 @@ function breedSidebar() {
                 let dogBreed = document.createElement('li');
                 dogBreed.innerHTML = keys[i];
                 sideList.appendChild(dogBreed);
-                //calling randomBreedFoto
+                //calling randomBreedFoto here?
                 dogBreed.addEventListener('click', function () {
-                    let dogBreedName = dogBreed.innerHTML;
-                    //console.log(dogBreedName);
+                    let dogBreedName = dogBreed.innerHTML;  //console.log(dogBreedName);
                     dogMain.innerHTML = '';
-                    //randomFotosDiv.innerHTML = '';
-                    randomBreedFoto(dogBreedName); 
-                })              
+                    randomBreedFoto(dogBreedName);
+                })
             }
         })
     randomDogs();
 }
 
 //random photos on the index page
-function randomDogs() { 
+function randomDogs() {
     let dog_url = 'https://dog.ceo/api/breeds/image/random/3';
     axios.get(dog_url)
         .then(response => { //renderFotos() funkció lehetne, de response undefined
@@ -67,19 +65,22 @@ function randomDogs() {
 //to get random 3 breed fotos
 function randomBreedFoto(breed) {
     let breedUrl = 'https://dog.ceo/api/breed';
-
+    
     axios.get(`${breedUrl}/${breed}/images/random/3`)
         .then(response => {
             let dogFotos = response.data.message;
-            console.log(dogFotos);
-
+            //console.log(dogFotos);
+            
             let headlineBreed = document.createElement('h3');
             headlineBreed.textContent = breed;
             let dogIndex = document.createElement('div');
             dogIndex.className = 'index-container';
-            dogMain.style.backgroundColor ="#eee";
+            dogMain.style.backgroundColor = "#eee";
             dogMain.appendChild(dogIndex);
             dogIndex.appendChild(headlineBreed);
+            //calling here createSubbreedLinks function
+            createSubbreedLinks(breed);
+
             for (let i = 0; i < dogFotos.length; i++) {
                 let foto = document.createElement('img');
                 foto.setAttribute('src', dogFotos[i]);
@@ -97,7 +98,65 @@ function randomBreedFoto(breed) {
             })
             dogMain.appendChild(refreshButton);
         })
-        
+
 };
+
+/*-----------------------------SUBBREED PAGE --------------------------------------------*/
+
+function createSubbreedLinks(breed) {
+    let subUrl = 'https://dog.ceo/api/breed';
+
+    axios.get(`${subUrl}/${breed}/list`)
+        .then(response => {
+            let subbreeds = response.data.message;
+            //console.log(subbreeds);
+
+            let subList = document.createElement('ul');
+            dogMain.appendChild(subList);
+            if (breed) {
+                for (let i = 0; i < subbreeds.length; i++) {
+                    let subListitem = document.createElement('li');
+                    subListitem.textContent = subbreeds[i];
+                    subList.appendChild(subListitem);
+
+                    subListitem.addEventListener('click', function(){
+                        let subBreed = subListitem.innerHTML;
+                        dogMain.innerHTML = '';
+                        randomSubbreedPhotos(breed, subBreed);
+                    })
+                }
+                return subList;
+            }
+        })
+};
+
+function randomSubbreedPhotos(breed, subbreed){
+    let subRandomUrl = 'https://dog.ceo/api/breed';
+
+    axios.get(`${subRandomUrl}/${breed}/${subbreed}/images/random/3`)
+        .then(response => {
+            let dogFotos = response.data.message;
+            console.log(dogFotos);
+
+            let subHeadLine = document.createElement('h3');
+            subHeadLine.textContent = subbreed;
+            dogMain.appendChild(subHeadLine);
+
+            for (let i = 0; i < dogFotos.length; i++) {
+                let foto = document.createElement('img');
+                foto.setAttribute('src', dogFotos[i]);
+                dogMain.appendChild(foto);
+            }
+
+            let refreshButton = document.createElement('button');
+            refreshButton.textContent = 'Oh not again';
+
+            refreshButton.addEventListener('click', function () {
+                dogMain.innerHTML = "";
+                randomSubbreedPhotos(breed, subbreed);
+            })
+            dogMain.appendChild(refreshButton);
+        })
+}
 
 breedSidebar();

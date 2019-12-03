@@ -1,3 +1,7 @@
+* {
+    max-width: 1200px;
+}
+
 body {
     font-family: 'Quicksand', sans-serif;
     margin: 0 auto;
@@ -5,18 +9,10 @@ body {
 
 .container {
     display: flex;
-    position: relative;
 }
 
-.container::after {
-    content: h2;
-    background-color: #eee;
-    width: 100vw;
-    height: 100px;
-    position: absolute;
-}
 
-.main {
+main {
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-around;
@@ -26,7 +22,7 @@ img {
     width: 200px;
     height: 200px;
     margin-top: 10px;
-    margin-left: 1%;
+    margin-left: 2%;
     border-radius: 0.4rem;
 }
 
@@ -34,19 +30,19 @@ h2, p {
     margin-left: 7%;
 }
 
-p:first-of-type {
-    margin-bottom: -2%;
-}
-
 ul {
     list-style-type: none;
 }
 
-li::first-letter {
+aside li::first-letter {
     text-transform: capitalize;
 }
 
-li:hover {
+aside li {
+    margin-left: 10%;
+}
+
+aside li:hover {
     background-color: gainsboro;
     border-radius: 0.3rem;
     width: 130px;
@@ -54,11 +50,11 @@ li:hover {
 }
 
 aside {
-    width: 40vw;
+    width: 30vw;
 }
 
 main {
-    width: 60vw;
+    width: 70vw;
 }
 
 button {
@@ -69,11 +65,31 @@ button {
     font-weight: 500;
     font-size: 1rem;
     letter-spacing: 0.1rem;
-    padding: 5% 4%;
+    padding: 3%;
     margin-top: 3%;
     margin-left: 15%;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 h3 {
-    margin-left: 10%;
+    margin-left: 5%;
+}
+
+main ul {
+    list-style-type: none;
+}
+
+main li {
+    display: inline;
+    margin: 2%;
+    padding: 2%;
+}
+
+main li:hover {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
 }
