@@ -34,7 +34,7 @@ ul {
     list-style-type: none;
 }
 
-aside li::first-letter {
+aside li::first-letter, h3 {
     text-transform: capitalize;
 }
 
@@ -75,7 +75,7 @@ button:hover {
 }
 
 h3 {
-    margin-left: 5%;
+    margin-left: 6%;
 }
 
 main ul {
@@ -84,12 +84,14 @@ main ul {
 
 main li {
     display: inline;
-    margin: 2%;
+    margin: 6% 3%;
     padding: 2%;
 }
 
 main li:hover {
     cursor: pointer;
-    color: blue;
+    color: rgb(39, 2, 250);
+    font-weight: 600;
+    letter-spacing: 0.1rem;
     text-decoration: underline;
 }
