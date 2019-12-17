@@ -1,26 +1,34 @@
 const dogMain = document.querySelector('main');
-
+let hashBreed;
 /*-----------------------------HASH - LOCAL.HOST/#BREED-SUBBREED --------------------------------------------*/
 /*----------------- it works, if after typing you refresh the page -------*/
-let id = window.location.hash;
-//console.log('hash', id);
 
-let breeds = window.location.hash.split('-');
-//console.log(breeds);
+    let id = window.location.hash;
+    console.log('hash', id);
 
-if (id = breeds[0]) {
-    dogMain.innerHTML = '';
-    breed = breeds[0];
-    breed = breed.substring(1); //to delete the #
-}
-if (breeds.length === 2) {
+    let basicURL = window.location;
+    console.log(basicURL);
 
-    breed = breeds[0];
-    breed = breed.substring(1);
-    subbreed = breeds[1];
-    id = `${breeds[0]}-${breeds[1]}`; //console.log(window.location.hash);
-    dogMain.innerHTML = '';
-}
+    let breeds = window.location.hash.split('-');
+    //console.log(breeds);
+
+    if (id = breeds[0]) {
+        dogMain.innerHTML = '';
+        breed = breeds[0];
+        breed = breed.substring(1); //to delete the #
+        id = `${breeds[0]}`;
+        basicURL = basicURL + id;
+    }
+    if (breeds.length === 2) {
+
+        breed = breeds[0];
+        breed = breed.substring(1);
+        subbreed = breeds[1];
+        id = `${breeds[0]}-${breeds[1]}`; //console.log(window.location.hash);
+        dogMain.innerHTML = '';
+        basicURL = basicURL + id;
+    }
+
 
 /*-----------------------------INDEX PAGE --------------------------------------------*/
 
@@ -35,23 +43,26 @@ function breedSidebar() {
 
             for (let i = 0; i < keys.length; i++) {
                 let dogBreed = document.createElement('li');
-                dogBreed.innerHTML = keys[i];
+                dogBreed.textContent = keys[i];
                 sideList.appendChild(dogBreed);
-            
+
                 dogBreed.addEventListener('click', function () {
+                    window.location.hash = dogBreed.textContent;
+                    hashBreed = window.location.hash;
                     let dogBreedName = dogBreed.innerHTML;  //console.log(dogBreedName);
                     dogMain.innerHTML = '';
                     randomBreedFoto(dogBreedName);
                 })
             }
         })
-        if (!id) {
-            randomDogs();
-        } else if (id === breeds[0]) {
-            randomBreedFoto(breed);
-        } else {
-            randomSubbreedPhotos(breed, subbreed);
-        }
+        
+    if (!id) {
+        randomDogs();
+    } else if (id === breeds[0]) {
+        randomBreedFoto(breed);
+    } else {
+        randomSubbreedPhotos(breed, subbreed);
+    }
 }
 
 function randomDogs() {
@@ -132,6 +143,7 @@ function createSubbreedLinks(breed) {
                     subList.appendChild(subListitem);
 
                     subListitem.addEventListener('click', function () {
+                        window.location.hash = hashBreed + "-" + subListitem.textContent;
                         let subBreed = subListitem.innerHTML;
                         dogMain.innerHTML = '';
                         randomSubbreedPhotos(breed, subBreed);
